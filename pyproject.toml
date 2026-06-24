@@ -1,0 +1,39 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools>=61", "wheel"]
+
+[project]
+name = "kc-knowledge-base-sync"
+version = "0.1.0"
+description = "Sync KCWorks how-to docs to the MESH knowledge-base repository"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "MESH Research", email = "scottia4@msu.edu" }]
+requires-python = ">=3.12"
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+  "pyyaml>=6",
+  "requests>=2.31",
+]
+
+[project.scripts]
+kb-sync = "knowledge_base_sync.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/MESH-Research/kc-knowledge-base-sync"
+Repository = "https://github.com/MESH-Research/kc-knowledge-base-sync"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+lint.select = ["B", "D", "E", "F", "I", "UP"]
+lint.pydocstyle.convention = "google"

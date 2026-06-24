@@ -1,0 +1,26 @@
+# Example configuration for kb-sync
+#
+# Copy to config.yaml and adjust paths for your environment.
+
+kcworks_root: /path/to/kcworks-next
+knowledge_base_path: ~/Development/knowledge-base
+
+audience: Developers / ops
+owner: _unassigned_
+branch_prefix: kb-sync
+
+lm_studio:
+  base_url: http://localhost:1234/v1
+  model: ""
+  temperature: 0.2
+  timeout_seconds: 300
+
+sources:
+  - docs_dir: docs/source/admin_guide
+    kb_topic: internal/works-maintenance
+    extra_keywords:
+      - kcworks
+      - invenio
+      - cli
+    files:
+      - user_data_management.md
