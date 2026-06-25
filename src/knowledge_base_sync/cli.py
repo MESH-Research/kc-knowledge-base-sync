@@ -38,8 +38,11 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--config",
         type=Path,
-        required=True,
-        help="YAML config file (see docs/knowledge_base_sync/config.example.yaml)",
+        default=Path("docs/knowledge_base_sync/config.yaml"),
+        help=(
+            "YAML config file "
+            "(default: docs/knowledge_base_sync/config.yaml relative to cwd)"
+        ),
     )
     parser.add_argument(
         "--kcworks-root",
