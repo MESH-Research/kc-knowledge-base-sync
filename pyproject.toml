@@ -21,6 +21,7 @@ dependencies = [
   "pyyaml>=6",
   "requests>=2.31",
 ]
+optional-dependencies.dev = ["bump-my-version==1.5.1"]
 
 [project.scripts]
 kb-sync = "knowledge_base_sync.cli:main"
@@ -40,3 +41,27 @@ target-version = "py312"
 line-length = 88
 lint.select = ["B", "D", "E", "F", "I", "UP"]
 lint.pydocstyle.convention = "google"
+
+[tool.bumpversion]
+current_version = "0.1.0"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
+serialize = ["{major}.{minor}.{patch}"]
+search = "{current_version}"
+replace = "{new_version}"
+commit = false
+tag = false
+allow_shell_hooks = false
+message = "Bump version: {current_version} → {new_version}"
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+key_path = "project.version"
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+key_path = "tool.bumpversion.current_version"
+
+[[tool.bumpversion.files]]
+filename = "src/knowledge_base_sync/__init__.py"
+search = '__version__ = "{current_version}"'
+replace = '__version__ = "{new_version}"'
