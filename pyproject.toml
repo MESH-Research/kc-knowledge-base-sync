@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "setuptools.build_meta"
-requires = ["setuptools>=61", "wheel"]
+requires = ["setuptools>=83", "wheel"]
 
 [project]
 name = "kc-knowledge-base-sync"
@@ -17,24 +17,15 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
 ]
-dependencies = [
-  "pyyaml>=6",
-  "requests>=2.31",
-]
+dependencies = ["pyyaml>=6", "requests>=2.32.4"]
 optional-dependencies.dev = ["bump-my-version==1.5.1"]
+urls.Homepage = "https://github.com/MESH-Research/kc-knowledge-base-sync"
+urls.Repository = "https://github.com/MESH-Research/kc-knowledge-base-sync"
+scripts.kb-sync = "knowledge_base_sync.cli:main"
 
-[project.scripts]
-kb-sync = "knowledge_base_sync.cli:main"
-
-[project.urls]
-Homepage = "https://github.com/MESH-Research/kc-knowledge-base-sync"
-Repository = "https://github.com/MESH-Research/kc-knowledge-base-sync"
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools.package-data]
-knowledge_base_sync = ["templates/*.md"]
+[tool.setuptools]
+package-data.knowledge_base_sync = ["templates/*.md"]
+packages.find.where = ["src"]
 
 [tool.ruff]
 target-version = "py312"
@@ -56,7 +47,6 @@ message = "Bump version: {current_version} → {new_version}"
 # pyproject.toml project.version and tool.bumpversion.current_version are
 # updated automatically by bump-my-version's update_config_file; listing them
 # here double-applies a whole-file search and fails on the second entry.
-
 [[tool.bumpversion.files]]
 filename = "src/knowledge_base_sync/__init__.py"
 search = '__version__ = "{current_version}"'
